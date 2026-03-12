@@ -1,43 +1,31 @@
 package SS14;
 
-import java.util.LinkedList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class BT4 {
     public static void main(String[] args) {
-        EmergencyRoom er = new EmergencyRoom();
+        List<String> reportedCases = Arrays.asList(
+                "Cúm A", "Sốt xuất huyết", "Cúm A", "Covid-19", "Cúm A", "Sốt xuất huyết"
+        );
 
-        System.out.println("CheckIn A");
-        er.patientCheckIn("A");
+        Map<String, Integer> statistics = new TreeMap<>();
 
-        System.out.println("CheckIn B");
-        er.patientCheckIn("B");
+        for (String disease : reportedCases) {
+            if (statistics.containsKey(disease)) {
+                int currentCount = statistics.get(disease);
+                statistics.put(disease, currentCount + 1);
+            } else {
+                statistics.put(disease, 1);
+            }
 
-        System.out.println("Emergency C");
-        er.emergencyCheckIn("C");
+        }
 
-        System.out.println("treatPatient() x3");
-        er.treatPatient();
-        er.treatPatient();
-        er.treatPatient();
-    }
-}
-
-class EmergencyRoom {
-    private LinkedList<String> patients = new LinkedList<>();
-
-    public void patientCheckIn(String name) {
-        patients.addLast("Đang khám: " + name);
-    }
-
-    public void emergencyCheckIn(String name) {
-        patients.addFirst("Đang cấp cứu: " + name);
-    }
-
-    public void treatPatient() {
-        if (!patients.isEmpty()) {
-            System.out.println(patients.removeFirst());
-        } else {
-            System.out.println("Hàng đợi trống.");
+        System.out.println("Output (đã sắp xếp):");
+        for (Map.Entry<String, Integer> entry : statistics.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue() + " ca");
         }
     }
 }

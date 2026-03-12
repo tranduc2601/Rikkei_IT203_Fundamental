@@ -1,32 +1,26 @@
 package SS14;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class BT2 {
     public static void main(String[] args) {
-        List<String> input = Arrays.asList(
-                "Paracetamol", "Ibuprofen", "Panadol", "Paracetamol", "Aspirin", "Ibuprofen"
-        );
+        Map<String, String> danhMucThuoc = new HashMap<>();
+        danhMucThuoc.put("T01", "Paracetamol");
+        danhMucThuoc.put("T02", "Ibuprofen");
+        danhMucThuoc.put("T03", "Aspirin");
+        danhMucThuoc.put("T04", "Amoxicillin");
+        danhMucThuoc.put("T05", "Vitamin C");
 
-        List<String> output = removeDuplicatesAndSort(input);
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Nhập mã thuốc cần tra cứu: ");
+        String maThuoc = scanner.nextLine();
 
-        System.out.println(output);
-    }
-
-    public static List<String> removeDuplicatesAndSort(List<String> list) {
-        List<String> uniqueList = new ArrayList<>();
-
-        for (String item : list) {
-            if (!uniqueList.contains(item)) {
-                uniqueList.add(item);
-            }
+        if (danhMucThuoc.containsKey(maThuoc)) {
+            System.out.println("Tên thuốc: " + danhMucThuoc.get(maThuoc));
+        } else {
+            System.out.println("Thuốc không tồn tại.");
         }
-
-        Collections.sort(uniqueList);
-
-        return uniqueList;
     }
 }
