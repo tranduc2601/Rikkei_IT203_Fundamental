@@ -50,7 +50,7 @@ public class BT6 {
         int maxPatients = 0;
 
         for (Map.Entry<String, List<HospitalPatient>> entry : departmentMap.entrySet()) {
-            int currentSize = entry.getValue().size(); 
+            int currentSize = entry.getValue().size();
             if (currentSize > maxPatients) {
                 maxPatients = currentSize;
                 maxDept = entry.getKey();
